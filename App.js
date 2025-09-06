@@ -8,25 +8,34 @@ HOW to create this structure through react
         </div>
     </div>
 */
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 const parent = React.createElement(
     'div',
     {id:'parent'},React.createElement(
         'div',
         {id:'child'},[
-            React.createElement('h1',{id:"sibling1"},'This is h1 tag'),
-            React.createElement('h2',{id:"sibling2"},'This is h2 tag')
+            /*BELOW CODE IS VALID FOR REACT 18 but
+              React 19 discourages passing arrays of children directly unless 
+              each child has a stable key.
+            */
+            //React.createElement('h1',{id:"sibling1"},'This is h1 tag'),
+            //React.createElement('h2',{id:"sibling2"},'This is h2 tag')
+            //REACT 19 WAY-----------------------------
+            React.createElement('h1',{id:"sibling1", key:"h1"} ,'This is h1 tag 🚀'),
+            React.createElement('h2',{id:"sibling2", key:"h2"} ,'This is h2 tag')
         ]
     )
 );
 
-console.log(parent);//Object    
+//console.log(parent);//Object    
 
 const heading = React.createElement(
     'h1',
     {id:'heading'},
     'Hello World from React'
 );
-console.log(heading);//Object         
+//console.log(heading);//Object         
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //root.render(heading);
 root.render(parent);
@@ -36,9 +45,9 @@ This code snippet demonstrates how to render a
 simple React element onto a web page using the
 React and ReactDOM libraries. It starts by creating 
 a React element called heading using React.createElement. 
-This function takes three arguments: the type of element 
+This function takes three arguments: the type of element or tag name
 to create ('h1' for a heading), an object containing 
-properties for the element ({id:'heading'}
+properties for the element ({id:'heading'} 
 assigns an ID to the element), and the content 
 to display inside the element ('Hello World from React').
 
