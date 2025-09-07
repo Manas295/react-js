@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Namaste React Project",
   "scripts": {
+    "start-dev":"parcel index.html",
+    "build-prod":"parcel build index.html",
     "test": "jest"
   },
   "repository": {
