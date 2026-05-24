@@ -11,6 +11,54 @@
          <h1>Not rendered</h1> <!-- this will be replaced by app.js as in sequence this will be 
          printed for seconds and you will see App.js logs printing-->
     </div>
-    <script type="module" src="App-Ep4-Swiggy.js"></script>
+    <script type="module" src="./src/App-Ep5-Swiggy.js"></script>
 </body>
 </html>
+
+
+<!--
+    1. We have created a div with id root and we will render our react app inside this div.
+    2. We have linked our index.css file to style our app.
+    3. We have linked our App-Ep4.js file which contains our react code.
+    4. When we run this code, we will see "Not rendered" for a few seconds and then it will be replaced by the content of App.js as it will be rendered inside the div with id root
+    
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App'; // Your main React component
+
+// Step 1: The Grab
+const rootElement = document.getElementById('root');
+
+// Step 2: The Takeover
+const root = ReactDOM.createRoot(rootElement);
+
+// Step 3: The Replacement
+root.render(<App />);
+
+Here is the step-by-step breakdown of how these lines work:
+
+1. The Grab: document.getElementById('root')
+Before React can do anything, it has to use plain, old-school JavaScript to find that specific <div>.
+The document is the browser's representation of your entire HTML file. 
+getElementById('root') scans the page, finds the <div id="root">, and holds 
+onto it in the rootElement variable.
+
+2. The Takeover: ReactDOM.createRoot()
+Once JavaScript finds the <div>, it hands it over to React.
+By calling ReactDOM.createRoot(rootElement), you are telling React: "I want you to 
+completely own and manage everything inside this specific box." React transforms 
+that empty HTML <div> into a powerful "React Root"—a dedicated portal where React 
+can safely inject and manage its own code.
+
+3. The Replacement: root.render()
+This is the exact moment the <h1>Not rendered</h1> gets wiped out.
+When you call root.render(<App/>), you are telling React to paint your main <App/> 
+component onto the screen.
+
+When React executes this command, it follows a strict rule: It completely clears out whatever 
+HTML is currently inside the root <div> and replaces it with your React components.
+
+So, for the split second it takes the browser to download and run your JavaScript file, 
+the user sees <h1>Not rendered</h1>. The millisecond root.render() fires, 
+React deletes that <h1> and injects your app in its place!
+    >

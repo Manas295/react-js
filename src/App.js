@@ -12,35 +12,39 @@ HOW to create this structure through react
  *      </div>
     </div>
 */
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-const parent = React.createElement('div',{id:'parent'},[
-    React.createElement('div',{id:'child',key:"child1"},[
-            /*BELOW CODE IS VALID FOR REACT 18 but
+import React from "react";
+import ReactDOM from "react-dom/client";
+const parent = React.createElement("div", { id: "parent" }, [
+  React.createElement("div", { id: "child", key: "child1" }, [
+    /*BELOW CODE IS VALID FOR REACT 18 but
               React 19 discourages passing arrays of children directly unless 
               each child has a stable key.
             */
-            //React.createElement('h1',{id:"sibling1"},'This is h1 tag'),
-            //React.createElement('h2',{id:"sibling2"},'This is h2 tag')
-            //REACT 19 WAY-----------------------------
-            React.createElement('h1',{id:"sibling1", key:"h1"} ,'This is Namaste React 🚀'),
-            React.createElement('h2',{id:"sibling2", key:"h2"} ,'by Akshay Saini')
-        ]),
-    React.createElement('div',{id:'child2',key:"child2"},[
-            React.createElement('h1',{id:"sibling3", key:"h3"},'I\'m h1 tag'),
-            React.createElement('h2',{id:"sibling4", key:"h4"},'I\'m h2 tag')
-        ])
+    //React.createElement('h1',{id:"sibling1"},'This is h1 tag'),
+    //React.createElement('h2',{id:"sibling2"},'This is h2 tag')
+    //REACT 19 WAY-----------------------------
+    React.createElement(
+      "h1",
+      { id: "sibling1", key: "h1" },
+      "This is Namaste React 🚀",
+    ),
+    React.createElement("h2", { id: "sibling2", key: "h2" }, "by Akshay Saini"),
+  ]),
+  React.createElement("div", { id: "child2", key: "child2" }, [
+    React.createElement("h1", { id: "sibling3", key: "h3" }, "I'm h1 tag"),
+    React.createElement("h2", { id: "sibling4", key: "h4" }, "I'm h2 tag"),
+  ]),
 ]);
 
-//console.log(parent);//Object    
+console.log(parent); //Object
 
 const heading = React.createElement(
-    'h1',
-    {id:'heading'},
-    'Hello World from React'
+  "h1",
+  { id: "heading" },
+  "Hello World from React",
 );
-//console.log(heading);//Object         
-const root = ReactDOM.createRoot(document.getElementById('root'));
+//console.log(heading);//Object
+const root = ReactDOM.createRoot(document.getElementById("root"));
 //root.render(heading);
 root.render(parent);
 
