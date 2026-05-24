@@ -2,6 +2,14 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState } from "react";
 import resList from "../utils/mockData";
+
+function filterData(searchText, restaurants) {
+  const filterData = restaurants.filter((restaurant) =>
+    restaurant.data.name.includes(searchText),
+  );
+  return filterData;
+}
+
 const Body = () => {
   //State variable - Super powerful variable which can be used to
   // create dynamic and interactive UI
@@ -50,6 +58,8 @@ const Body = () => {
     const listOfRestaurants = arr[0];
     const setListOfRestaurants = arr[1];
   */
+
+  const [searchText, setSearchText] = useState("");
   //   [
   //   {
   //     data: {
@@ -139,6 +149,28 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
+      <div className="search-container">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search for restaurant"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value); //Updating the state variable with new search text
+          }}
+        />
+        <button
+          className="search-btn"
+          onClick={() => {
+            //need to filter the data
+            const data = filterData(searchText, listOfRestaurants);
+            // update the state - restaurants which we want to render
+            setListOfRestaurants(data); //Updating the state variable with new filtered list
+          }}
+        >
+          Search
+        </button>
+      </div>
       <div className="res-container">
         {listOfRestaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.data.id} resData={restaurant} /> //variable resData should be
@@ -165,3 +197,27 @@ export default Body;
 // clicking the button does not currently update the UI directly;
 //  it just computes and prints the list of top-rated restaurants.
 // !-- >
+
+/*
+ /* 
+        Search Container 
+        onChange on the input keeps the typed text in sync
+        with React state. 
+        
+        When you type KFC or Meghana foods, the handler runs:
+        setSearchText(e.target.value) That stores the current input value in the
+        state variable searchText. 
+        
+        Then when you click Search: 
+        the button handler reads searchText 
+        it uses that value to filter listOfRestaurants 
+        and updates the restaurant list state with setListOfRestaurants(data) 
+        So the
+        
+        flow is: 
+        Type text → onChange saves it to searchText 
+        Click Search → code
+        uses searchText to find matching restaurants 
+        UI updates to show the filtered results
+      
+*/
